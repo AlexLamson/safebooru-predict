@@ -13,4 +13,7 @@ Predict user ratings for anime-style images
 - choose optimal regressor based on testing set
 - report accuracy found in validation set
 
+## General notes
+It took 5 hours and 12 minutes to download all the metadata
+
 
