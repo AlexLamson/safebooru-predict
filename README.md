@@ -16,4 +16,4 @@ Predict user ratings for anime-style images
 ## General notes
 It took 5 hours and 12 minutes to download all the metadata
 It took 59 minutes to count the number of occurrences of each score
-
+Only about 28.9% of image have a score greater than 0.
