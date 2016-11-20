@@ -64,6 +64,7 @@ def download_info(query, filemode="w", filename="query_results.xml", site="safeb
 # download all the image metadata from a booru
 def download_booru(filename, site="safebooru.org"):
 
+	#http://stackoverflow.com/a/18603065/2230446
 	def get_last_line_of_file(filename):
 		with open(filename, "rb") as f:
 			f.seek(-2, 2)
@@ -88,5 +89,9 @@ def download_booru(filename, site="safebooru.org"):
 	download_info(query=query, filemode=filemode, filename=filename, site="safebooru.org", images_per_page=900)
 
 
-download_booru("../res/safebooru.xml")
+def main():
+	download_booru("../res/safebooru.xml")
+
+if __name__ == "__main__":
+	main()
 
