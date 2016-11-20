@@ -36,7 +36,7 @@ def get_score_counts(filename):
 	return score_counts
 
 
-def write_score_counts(score_counts, filename="../res/scores.csv"):
+def write_score_counts(score_counts, filename="../../res/scores.csv"):
 	scores_file = open(filename,"w")
 	scores_file.write("score,occurrences\n")
 
@@ -58,7 +58,7 @@ def graph_score_counts(score_counts):
 	plt.title("Score frequencies of {} safebooru images".format(sum(occurrences)+1))
 	plt.xlabel("Score")
 	plt.ylabel("Number of Occurrences")
-	plt.savefig("../figures/Score frequencies.png")
+	plt.savefig("../../figures/Score frequencies.png")
 	# plt.show()
 
 	plt.clf()
@@ -66,15 +66,15 @@ def graph_score_counts(score_counts):
 	plt.title("Score frequencies of {} safebooru images (log scale)".format(sum(occurrences)+1))
 	plt.xlabel("Score")
 	plt.ylabel("Number of Occurrences")
-	plt.savefig("../figures/Score frequencies (log scale).png")
+	plt.savefig("../../figures/Score frequencies (log scale).png")
 	plt.show()
 
 
 def main():
-	# filename = "../res/head_safebooru.xml"
-	filename = "../res/safebooru.xml"
+	# filename = "../../res/head_safebooru.xml"
+	filename = "../../res/safebooru.xml"
 	score_counts = get_score_counts(filename)
-	write_score_counts(score_counts, filename="../res/scores.csv")
+	write_score_counts(score_counts, filename="../../res/scores.csv")
 	graph_score_counts(score_counts)
 
 if __name__ == "__main__":
