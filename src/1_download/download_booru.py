@@ -90,7 +90,7 @@ def download_booru(filename, site="safebooru.org"):
 
 
 def main():
-	download_booru("../res/safebooru.xml")
+	download_booru("../../res/safebooru.xml")
 
 if __name__ == "__main__":
 	main()
