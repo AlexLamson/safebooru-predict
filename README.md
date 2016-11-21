@@ -2,9 +2,11 @@
 Predict user ratings for anime-style images
 
 ## Requirements
+
 ### Python
 - tqdm
 - sklearn
+
 ### Other
 - GraphViz
 
