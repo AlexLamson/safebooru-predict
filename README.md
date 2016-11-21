@@ -1,6 +1,10 @@
 # safebooru-predict
 Predict user ratings for anime-style images
 
+## Requirements
+- tqdm
+- sklearn
+
 ## To Do
 - make the sampling procedure artificially include more samples of non-zero scores
 
