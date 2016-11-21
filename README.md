@@ -1,6 +1,10 @@
 # safebooru-predict
 Predict user ratings for anime-style images
 
+## To Do
+- make the sampling procedure artificially include more samples of non-zero scores
+
+
 ## Pipeline
 - download all metadata
 - sample from that xml file so that amount of data is reasonable
