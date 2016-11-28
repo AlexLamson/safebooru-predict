@@ -32,3 +32,4 @@ Predict user ratings for anime-style images
 - Only about 28.9% of images have a score greater than 0.
 - It took 1 hour and 5 minutes to count the number of occurrences of each tag
 - Setting criterion="mae" makes the classifier train too slowly to be useable
+- Look into this: http://scikit-learn.org/stable/auto_examples/ensemble/plot_adaboost_multiclass.html
