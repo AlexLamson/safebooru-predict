@@ -11,7 +11,8 @@ Predict user ratings for anime-style images
 - GraphViz
 
 ## To Do
-- make the sampling procedure artificially include more samples of non-zero scores
+- parameterize number of images instead of hardcoding it
+- convert the XML into CSV to make it accessible to pandas and (maybe?) easier to parse
 
 
 ## Pipeline
