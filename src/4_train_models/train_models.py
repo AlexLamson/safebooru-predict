@@ -12,9 +12,15 @@ from sklearn import tree
 
 random_state = 1
 
+'''
+TODO
+----
+Choosing what model(s) to train should be controlled by the program flow, rather than messily commenting out code.
+'''
 
-# filename = "../../res/head_safebooru.xml"
-filename = "../../res/sample_safebooru.xml"
+
+filename = "../../res/head_safebooru.xml"
+# filename = "../../res/sample_safebooru.xml"
 tag_index_map = load_tag_index_map("../../res/tag_index_map.p")
 feature_names = [x[0] for x in sorted(tag_index_map.items(), key=operator.itemgetter(1))]
 xs, ys = file_to_xs_ys(filename, tag_index_map)
@@ -34,9 +40,38 @@ def timestamp():
 	return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
 
+
+from sklearn.decomposition import PCA
+pca = PCA(n_components=100)
+pca.fit(X_train)
+X_train = pca.transform(X_train)
+X_test = pca.transform(X_test)
+
+
+
+
+
+from sklearn.linear_model import LinearRegression
+regr = LinearRegression()
+print("[{}] training linear regressor".format(timestamp()))
+regr.fit(X_train, y_train)
+print("[{}] training complete".format(timestamp()))
+print("mean_absolute_error:", mean_absolute_error(y_test, regr.predict(X_test)))
+save_model("../../res/models/linear_regression.p", regr)
+
+
+#DEBUG
+#DEBUG
+#DEBUG
+exit()
+#DEBUG
+#DEBUG
+#DEBUG
+
 #decision tree regressor
 from sklearn.tree import DecisionTreeRegressor
-regr = DecisionTreeRegressor(max_depth=10, min_samples_split=500, min_samples_leaf=25, random_state=random_state)
+# regr = DecisionTreeRegressor(max_depth=4, min_samples_split=500, min_samples_leaf=25, random_state=random_state)
+# regr = DecisionTreeRegressor(max_depth=4, min_samples_split=10000, min_samples_leaf=5000, random_state=random_state)
 '''
 AREAS OF INTEREST:
 "criterion":["mse","mae"]
@@ -47,22 +82,23 @@ AREAS OF INTEREST:
 "max_leaf_nodes":[None,10]
 "random_state":[random_state]
 '''
-print("[{}] training decision tree regressor".format(timestamp()))
-regr.fit(X_train, y_train)
-print("[{}] training complete".format(timestamp()))
-save_model("../../res/models/decision_tree.p", regr)
+# print("[{}] training decision tree regressor".format(timestamp()))
+# regr.fit(X_train, y_train)
+# print("[{}] training complete".format(timestamp()))
+# save_model("../../res/models/decision_tree.p", regr)
 
-# regr = load_model("../../res/models/decision_tree.p")
+regr = load_model("../../res/models/decision_tree.p")
 
 # print("inputs:",X_test)
 # print("truth:",y_test)
 # print("predictions:",regr.predict(X_test))
-print("mean_absolute_error:", mean_absolute_error(y_test, regr.predict(X_test)))
+# print("mean_absolute_error:", mean_absolute_error(y_test, regr.predict(X_test)))
 
 print("exporting decision tree regressor visualization")
 dot_data = tree.export_graphviz(regr, feature_names=feature_names, filled=True, out_file=None)
 graph = pydotplus.graph_from_dot_data(dot_data)
 graph.write_pdf("../../figures/regression_tree.pdf")
+
 
 
 #DEBUG
@@ -77,7 +113,7 @@ exit()
 
 #random forest of decision trees regressors
 from sklearn.ensemble import RandomForestRegressor
-regr = RandomForestRegressor(n_estimators=10, max_depth=6, min_samples_split=50, min_samples_leaf=15, random_state=random_state)
+regr = RandomForestRegressor(n_estimators=10, max_depth=4, min_samples_split=500, min_samples_leaf=25, random_state=random_state)
 '''
 AREAS OF INTEREST:
 "n_estimators":[10]
