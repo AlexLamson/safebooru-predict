@@ -1,3 +1,7 @@
+# Project-specific
+excluded/
+src/testing/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
