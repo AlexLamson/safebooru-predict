@@ -2,6 +2,7 @@
 excluded/
 src/testing/
 res/*.xml
+res/*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
