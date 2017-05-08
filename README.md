@@ -10,11 +10,6 @@ Predict user ratings for anime-style images
 ### Other
 - GraphViz
 
-## To Do
-- parameterize number of images instead of hardcoding it
-- convert the XML into CSV to make it accessible to pandas and (maybe?) easier to parse
-
-
 ## Pipeline
 - download all metadata
 - sample from that xml file so that amount of data is reasonable
