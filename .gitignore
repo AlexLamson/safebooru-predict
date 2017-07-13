@@ -3,6 +3,8 @@ excluded/
 src/testing/
 res/*.xml
 res/*.csv
+res/data/*.xml
+res/data/*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
