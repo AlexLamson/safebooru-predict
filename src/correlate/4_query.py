@@ -10,7 +10,7 @@ import operator
 
 
 
-query_tag = "coffee"
+query_tag = "coffee" #note: no longer used
 
 
 num_tags_to_keep = 10000 #don't change this value unless you re-run the other scripts with the new value

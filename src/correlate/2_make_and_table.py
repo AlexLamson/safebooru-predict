@@ -29,26 +29,16 @@ tags_file = "../../res/safebooru/tags.csv"
 tag_counts = pd.read_csv(tags_file, nrows=num_tags_to_keep, header=0, names=['occurrences', 'tag'])
 
 
-# make a map from tags to (int) locations in the array
-print("creating tag index map")
+# make a map from tags to (int) indices in the table
+print("creating tag->index map")
 from collections import defaultdict
 tag_index_map = defaultdict(lambda: -1)
 for index, row in tag_counts.iterrows():
 	tag = row['tag']
 	tag_index_map[tag] = index
 
-# print(tag_index_map)
 
-
-'''
-     tag1 !tag1
- tag2 a     c
-!tag2 b     d
-
-(NOTE: a better version of this table was draw on the whiteboard just now, its saved in office lens as "feature correlation notes 2")
-'''
-
-
+# make the more frequently used tag come first in the pair
 def tag_pair_to_cell_coords(tag1, tag2):
 	tag1_rank = tag_index_map[tag1]
 	tag2_rank = tag_index_map[tag2]
@@ -61,7 +51,7 @@ def tag_pair_to_cell_coords(tag1, tag2):
 # table of counts representing number of times each pair of tags occurred together
 # the index->tag is represented in the tag_index_map dict
 and_table = np.zeros(shape=(num_tags_to_keep, num_tags_to_keep), dtype=np.uint32)
-# and_table = lil_matrix((num_tags_to_keep, num_tags_to_keep), dtype=np.uint32)
+# and_table = lil_matrix((num_tags_to_keep, num_tags_to_keep), dtype=np.uint32) #maybe improve space efficiency in the future?
 
 
 # filename = "../../res/safebooru/data/head_safebooru.csv"
@@ -70,7 +60,7 @@ filename = "../../res/safebooru/data/safebooru.csv"
 print("reading chunks from {}".format(filename))
 num_lines = get_num_lines(filename)
 chunksize = 50
-# for chunk in tqdm(pd.read_csv(filename, chunksize=chunksize, header=0, usecols=['tags'], names=col_names), total=num_lines/chunksize):
+# for chunk in tqdm(pd.read_csv(filename, chunksize=chunksize, header=0, usecols=['tags'], names=col_names), total=num_lines/chunksize+1):
 for chunk in tqdm(pd.read_csv(filename, chunksize=chunksize, header=0, index_col='id', usecols=['id','tags'], names=col_names), total=num_lines/chunksize+1):
 	for index, line in chunk.iterrows():
 		if type(line['tags'])==float:
@@ -85,7 +75,6 @@ for chunk in tqdm(pd.read_csv(filename, chunksize=chunksize, header=0, index_col
 
 					tag1_rank, tag2_rank = tag_pair_to_cell_coords(tag1, tag2)
 					and_table[tag1_rank, tag2_rank] += 1
-
 
 
 print("saving and_table to {}".format(filename))

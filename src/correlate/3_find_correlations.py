@@ -25,15 +25,6 @@ for all non-reflexive tag pairs
 	add alex_phi_coefficient to the correlation_table
 
 write the correlation_table to a file
-
-~~~~~~~~~~~~~~~~~~~~~~
-vvv different file vvv
-~~~~~~~~~~~~~~~~~~~~~~
-
-pick some interesting tag
-
-
-
 '''
 
 # this number was determined in the "correlate_make_and_table.py" file
