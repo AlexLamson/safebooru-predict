@@ -1,10 +1,9 @@
 # Project-specific
 excluded/
 src/testing/
-res/*.xml
-res/*.csv
-res/data/*.xml
-res/data/*.csv
+!res/safebooru
+res/safebooru/data
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

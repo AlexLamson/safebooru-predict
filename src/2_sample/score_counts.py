@@ -36,7 +36,7 @@ def get_score_counts(filename):
 	return score_counts
 
 
-def write_score_counts(score_counts, filename="../../res/scores.csv"):
+def write_score_counts(score_counts, filename="../../res/safebooru/scores.csv"):
 	scores_file = open(filename,"w")
 	scores_file.write("score,occurrences\n")
 
@@ -71,10 +71,10 @@ def graph_score_counts(score_counts):
 
 
 def main():
-	# filename = "../../res/head_safebooru.xml"
-	filename = "../../res/safebooru.xml"
+	# filename = "../../res/safebooru/data/head_safebooru.xml"
+	filename = "../../res/safebooru/data/safebooru.xml"
 	score_counts = get_score_counts(filename)
-	write_score_counts(score_counts, filename="../../res/scores.csv")
+	write_score_counts(score_counts, filename="../../res/safebooru/scores.csv")
 	graph_score_counts(score_counts)
 
 if __name__ == "__main__":

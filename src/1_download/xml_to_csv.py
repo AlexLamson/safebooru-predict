@@ -1,31 +1,36 @@
 #!/usr/bin/python3
+import os,sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from utils import get_num_lines
+
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 import time
 import datetime
 
-#http://stackoverflow.com/a/27518377/2230446
-def get_num_lines(filename):
-	f = open(filename, "rb")
-	num_lines = 0
-	buf_size = 1024 * 1024
-	read_f = f.raw.read
+# #http://stackoverflow.com/a/27518377/2230446
+# def get_num_lines(filename):
+# 	f = open(filename, "rb")
+# 	num_lines = 0
+# 	buf_size = 1024 * 1024
+# 	read_f = f.raw.read
 
-	buf = read_f(buf_size)
-	while buf:
-		num_lines += buf.count(b"\n")
-		buf = read_f(buf_size)
+# 	buf = read_f(buf_size)
+# 	while buf:
+# 		num_lines += buf.count(b"\n")
+# 		buf = read_f(buf_size)
 
-	return num_lines
+# 	return num_lines
 
-# dest = "../../res/head_safebooru.csv"
-# source = "../../res/head_safebooru.xml"
-dest = "../../res/safebooru.csv"
-source = "../../res/safebooru.xml"
+# source = "../../res/safebooru/data/head_safebooru.xml"
+# dest = "../../res/safebooru/data/head_safebooru.csv"
+source = "../../res/safebooru/data/safebooru.xml"
+dest = "../../res/safebooru/data/safebooru.csv"
 
 num_lines = get_num_lines(source)
 with open(dest, "w") as csv:
-	header = "id,created_at,rating,score,sample_url,sample_width,sample_height,preview_url,preview_width,preview_height,tags"
+	# header = "id,created_at,rating,score,sample_url,sample_width,sample_height,preview_url,preview_width,preview_height,tags"
+	header = "id,created_at,rating,score,sample_url,sample_width,sample_height,preview_url,tags"
 	csv.write(header)
 	csv.write("\n")
 
@@ -61,6 +66,10 @@ with open(dest, "w") as csv:
 
 				# attributes = [post_id,rating,score,md5,created_at,file_url,width,height,preview_url,preview_width,preview_height,sample_url,sample_width,sample_height,has_children,has_comments,has_notes,change,creator_id,parent_id,source,status,tags]
 
+				status = post["status"]
+				if status != "active":
+					continue
+
 				post_id = post["id"]
 
 				created_at = str(int( time.mktime(datetime.datetime.strptime(post["created_at"], "%a %b %d %H:%M:%S %z %Y").timetuple()) ))
@@ -79,6 +88,7 @@ with open(dest, "w") as csv:
 				tags = '"'+post["tags"].strip().replace('"','""')+'"'
 
 				attributes = [post_id,created_at,rating,score,sample_url,sample_width,sample_height,preview_url,preview_width,preview_height,tags]
+				# attributes = [post_id,created_at,rating,score,sample_width,sample_height,preview_url,tags]
 
 
 				csv.write(",".join(attributes))

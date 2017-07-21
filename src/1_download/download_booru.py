@@ -79,7 +79,7 @@ def download_booru(filename, site="safebooru.org"):
 	if os.path.isfile(filename):
 		print("File already exists. Appending query results to file")
 
-		last_line = get_last_line_of_file("safebooru.xml")
+		last_line = get_last_line_of_file(filename)
 		soup = BeautifulSoup(last_line, "xml")
 		last_id = soup.findAll()[0]["id"]
 
@@ -90,7 +90,7 @@ def download_booru(filename, site="safebooru.org"):
 
 
 def main():
-	download_booru("../../res/safebooru.xml")
+	download_booru("../../res/safebooru/data/safebooru.xml")
 
 if __name__ == "__main__":
 	main()

@@ -71,11 +71,11 @@ def file_to_xs_ys(filename, tag_index_map):
 
 
 def main():
-	tag_index_map = load_tag_index_map("../../res/tag_index_map.p")
+	tag_index_map = load_tag_index_map("../../res/safebooru/tag_index_map.p")
 	# print(tag_index_map)
 
-	filename = "../../res/head_safebooru.xml"
-	# filename = "../../res/sample_safebooru.xml"
+	filename = "../../res/safebooru/data/head_safebooru.xml"
+	# filename = "../../res/safebooru/data/sample_safebooru.xml"
 	xs, ys = file_to_xs_ys(filename, tag_index_map)
 
 	print(xs[0], ys[0])

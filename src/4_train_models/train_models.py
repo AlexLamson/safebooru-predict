@@ -19,9 +19,9 @@ Choosing what model(s) to train should be controlled by the program flow, rather
 '''
 
 
-filename = "../../res/head_safebooru.xml"
-# filename = "../../res/sample_safebooru.xml"
-tag_index_map = load_tag_index_map("../../res/tag_index_map.p")
+filename = "../../res/safebooru/data/head_safebooru.xml"
+# filename = "../../res/safebooru/data/sample_safebooru.xml"
+tag_index_map = load_tag_index_map("../../res/safebooru/tag_index_map.p")
 feature_names = [x[0] for x in sorted(tag_index_map.items(), key=operator.itemgetter(1))]
 xs, ys = file_to_xs_ys(filename, tag_index_map)
 
@@ -57,7 +57,7 @@ print("[{}] training linear regressor".format(timestamp()))
 regr.fit(X_train, y_train)
 print("[{}] training complete".format(timestamp()))
 print("mean_absolute_error:", mean_absolute_error(y_test, regr.predict(X_test)))
-save_model("../../res/models/linear_regression.p", regr)
+save_model("../../res/safebooru/models/linear_regression.p", regr)
 
 
 #DEBUG
@@ -85,9 +85,9 @@ AREAS OF INTEREST:
 # print("[{}] training decision tree regressor".format(timestamp()))
 # regr.fit(X_train, y_train)
 # print("[{}] training complete".format(timestamp()))
-# save_model("../../res/models/decision_tree.p", regr)
+# save_model("../../res/safebooru/models/decision_tree.p", regr)
 
-regr = load_model("../../res/models/decision_tree.p")
+regr = load_model("../../res/safebooru/models/decision_tree.p")
 
 # print("inputs:",X_test)
 # print("truth:",y_test)
@@ -132,7 +132,7 @@ print("[{}] training complete".format(timestamp()))
 # print("truth:",y_test)
 # print("predictions:",regr.predict(X_test))
 print("mean_absolute_error:", mean_absolute_error(y_test, regr.predict(X_test)))
-save_model("../../res/models/regression_forest.p", regr)
+save_model("../../res/safebooru/models/regression_forest.p", regr)
 
 # print("exporting regression forest visualization")
 # dot_data = tree.export_graphviz(regr, feature_names=feature_names, filled=True, out_file=None)

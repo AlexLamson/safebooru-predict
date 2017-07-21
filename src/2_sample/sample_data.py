@@ -54,10 +54,10 @@ def sample_all_non_zero_scores(source, dest):
 
 
 def main():
-	# source = "../../res/head_safebooru.xml"
-	source = "../../res/safebooru.xml"
-	# sample_every_nth_line(source, dest="../../res/sample_safebooru.xml", n=100)
-	sample_all_non_zero_scores(source, dest="../../res/sample_safebooru.xml")
+	# source = "../../res/safebooru/data/head_safebooru.xml"
+	source = "../../res/safebooru/data/safebooru.xml"
+	# sample_every_nth_line(source, dest="../../res/safebooru/data/sample_safebooru.xml", n=100)
+	sample_all_non_zero_scores(source, dest="../../res/safebooru/data/sample_safebooru.xml")
 
 if __name__ == "__main__":
 	main()
