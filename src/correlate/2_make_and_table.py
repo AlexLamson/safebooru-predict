@@ -10,6 +10,20 @@ import time
 from tqdm import tqdm
 
 
+'''
+ALGORITHM
+
+make tag frequency rank map
+
+for every image
+	for every pair of tags in the image
+		r1,r2 = the frequency rank of both tags (where the most frequent tag is 0, the second most is 1, etc)
+		order r1 and r2 such that the smaller number comes first (this ensures we use only the upper-right half of the table)
+		increment the table at that position
+
+save the table to a file
+'''
+
 
 col_names = ['id','created_at','rating','score','sample_url','sample_width','sample_height','preview_url','preview_width','preview_height','tags']
 

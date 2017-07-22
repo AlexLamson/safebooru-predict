@@ -11,8 +11,9 @@ from tqdm import tqdm
 from math import sqrt
 
 
-
 '''
+ALGORITHM
+
 load the and_table into memory
 load the tags file into memory
 	should be able to map between index, tag string and frequency
@@ -27,9 +28,9 @@ for all non-reflexive tag pairs
 write the correlation_table to a file
 '''
 
+
 # this number was determined in the "correlate_make_and_table.py" file
 num_tags_to_keep = 10000
-# num_tags_to_keep = 100
 
 
 # open the tags file to get a list of most frequent tags

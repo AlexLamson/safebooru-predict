@@ -9,13 +9,6 @@ from tqdm import tqdm
 import operator
 
 
-
-query_tag = "coffee" #note: no longer used
-
-
-num_tags_to_keep = 10000 #don't change this value unless you re-run the other scripts with the new value
-
-
 '''
 load the correlation table
 load the tags list
@@ -30,8 +23,10 @@ add each (tag, correlation_value) to correlation_results
 sort correlation_results by correlation_value in descending order
 cast correlation_results to numpy array to better visualize the beginning and end
 print the correlation_results
-
 '''
+
+num_tags_to_keep = 10000 #don't change this value unless you re-run the other scripts with the new value
+
 
 # open the tags file to get a list of most frequent tags
 print("reading tags file")
