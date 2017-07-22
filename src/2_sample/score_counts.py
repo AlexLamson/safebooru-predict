@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+import os,sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from utils import *
+
 from bs4 import BeautifulSoup
 import time, datetime
 import numpy as np
@@ -36,7 +41,7 @@ def get_score_counts(filename):
 	return score_counts
 
 
-def write_score_counts(score_counts, filename="../../res/safebooru/scores.csv"):
+def write_score_counts(score_counts, filename=booru_path("scores.csv")):
 	scores_file = open(filename,"w")
 	scores_file.write("score,occurrences\n")
 
@@ -71,10 +76,10 @@ def graph_score_counts(score_counts):
 
 
 def main():
-	# filename = "../../res/safebooru/data/head_safebooru.xml"
-	filename = "../../res/safebooru/data/safebooru.xml"
+	# filename = booru_path("data/head_safebooru.xml")
+	filename = booru_path("data/safebooru.xml")
 	score_counts = get_score_counts(filename)
-	write_score_counts(score_counts, filename="../../res/safebooru/scores.csv")
+	write_score_counts(score_counts, filename=booru_path("scores.csv"))
 	graph_score_counts(score_counts)
 
 if __name__ == "__main__":

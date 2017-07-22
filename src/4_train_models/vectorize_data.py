@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+import os,sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from utils import *
+
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 import numpy as np
@@ -71,11 +75,11 @@ def file_to_xs_ys(filename, tag_index_map):
 
 
 def main():
-	tag_index_map = load_tag_index_map("../../res/safebooru/tag_index_map.p")
+	tag_index_map = load_tag_index_map(booru_path("tag_index_map.p"))
 	# print(tag_index_map)
 
-	filename = "../../res/safebooru/data/head_safebooru.xml"
-	# filename = "../../res/safebooru/data/sample_safebooru.xml"
+	filename = booru_path("data/head_safebooru.xml")
+	# filename = booru_path("data/sample_safebooru.xml")
 	xs, ys = file_to_xs_ys(filename, tag_index_map)
 
 	print(xs[0], ys[0])

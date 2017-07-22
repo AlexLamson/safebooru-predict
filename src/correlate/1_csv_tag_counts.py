@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os,sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from utils import get_num_lines
+from utils import *
 
 import time
 from collections import defaultdict
@@ -51,11 +51,11 @@ def write_tag_counts(tag_counts, filename):
 
 
 def main():
-	# filename = "../../res/data/head_safebooru.csv"
-	filename = "../../res/data/safebooru.csv"
+	# filename = booru_path("data/head_safebooru.csv")
+	filename = booru_path("data/safebooru.csv")
 
 	tag_counts = get_tag_counts(filename)
-	write_tag_counts(tag_counts, filename="../../res/safebooru/tags.csv")
+	write_tag_counts(tag_counts, filename=booru_path("tags.csv"))
 
 if __name__ == "__main__":
 	main()

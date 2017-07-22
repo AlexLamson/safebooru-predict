@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os,sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from utils import get_num_lines
+from utils import *
 
 import numpy as np
 import pandas as pd
@@ -35,7 +35,7 @@ print the correlation_results
 
 # open the tags file to get a list of most frequent tags
 print("reading tags file")
-tags_file = "../../res/safebooru/tags.csv"
+tags_file = booru_path("tags.csv")
 tag_counts = pd.read_csv(tags_file, nrows=num_tags_to_keep, header=0, names=['occurrences', 'tag'])
 
 
@@ -55,7 +55,7 @@ for index, row in tag_counts.iterrows():
 
 
 print("loading correlation_table into memory")
-filename = '../../res/safebooru/correlation_table.npy'
+filename = booru_path('correlation_table.npy')
 correlation_table = np.load(filename)
 
 
@@ -120,5 +120,5 @@ while should_keep_running:
 
 # # write the results to a file
 # print("writing query results to file")
-# with open("../../res/query_results.csv", 'w') as fp:
+# with open(booru_path("query_results.csv"), 'w') as fp:
 #     fp.write('\n'.join('"{}",{}'.format(tag,score) for tag,score in correlation_results))

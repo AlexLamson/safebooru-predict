@@ -1,13 +1,15 @@
 #!/usr/bin/python3
+import os,sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from utils import *
+
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import time
 import datetime
 import re
 import urllib
-import sys
 from tqdm import tqdm
-import os
 
 
 # download the results of a single API call
@@ -90,7 +92,7 @@ def download_booru(filename, site="safebooru.org"):
 
 
 def main():
-	download_booru("../../res/safebooru/data/safebooru.xml")
+	download_booru(booru_path("data/safebooru.xml"))
 
 if __name__ == "__main__":
 	main()

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os,sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from utils import get_num_lines
+from utils import *
 
 import numpy as np
 import pandas as pd
@@ -25,7 +25,7 @@ I chose the number using the following formula:
 
 # open the tags file to get a list of most frequent tags
 print("reading tags file")
-tags_file = "../../res/safebooru/tags.csv"
+tags_file = booru_path("tags.csv")
 tag_counts = pd.read_csv(tags_file, nrows=num_tags_to_keep, header=0, names=['occurrences', 'tag'])
 
 
@@ -54,8 +54,8 @@ and_table = np.zeros(shape=(num_tags_to_keep, num_tags_to_keep), dtype=np.uint32
 # and_table = lil_matrix((num_tags_to_keep, num_tags_to_keep), dtype=np.uint32) #maybe improve space efficiency in the future?
 
 
-# filename = "../../res/safebooru/data/head_safebooru.csv"
-filename = "../../res/safebooru/data/safebooru.csv"
+# filename = booru_path("data/head_safebooru.csv")
+filename = booru_path("data/safebooru.csv")
 
 print("reading chunks from {}".format(filename))
 num_lines = get_num_lines(filename)
@@ -78,7 +78,7 @@ for chunk in tqdm(pd.read_csv(filename, chunksize=chunksize, header=0, index_col
 
 
 print("saving and_table to {}".format(filename))
-filename = '../../res/safebooru/and_table.npy'
+filename = booru_path('and_table.npy')
 np.save(filename, and_table)
 # d = np.load(filename)
 # print(np.all(d == and_table))

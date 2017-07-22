@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os,sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from utils import get_num_lines
+from utils import *
 
 from tqdm import tqdm
 from bs4 import BeautifulSoup
@@ -22,10 +22,10 @@ import datetime
 
 # 	return num_lines
 
-# source = "../../res/safebooru/data/head_safebooru.xml"
-# dest = "../../res/safebooru/data/head_safebooru.csv"
-source = "../../res/safebooru/data/safebooru.xml"
-dest = "../../res/safebooru/data/safebooru.csv"
+# source = booru_path("data/head_safebooru.xml")
+# dest = booru_path("data/head_safebooru.csv")
+source = booru_path("data/safebooru.xml")
+dest = booru_path("data/safebooru.csv")
 
 num_lines = get_num_lines(source)
 with open(dest, "w") as csv:

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os,sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from utils import get_num_lines
+from utils import *
 
 import numpy as np
 import pandas as pd
@@ -34,7 +34,7 @@ num_tags_to_keep = 10000
 
 # open the tags file to get a list of most frequent tags
 print("reading tags file")
-tags_file = "../../res/safebooru/tags.csv"
+tags_file = booru_path("tags.csv")
 tag_counts = pd.read_csv(tags_file, nrows=num_tags_to_keep, header=0, names=['occurrences', 'tag'])
 
 
@@ -56,11 +56,11 @@ for index, row in tag_counts.iterrows():
 
 # load the and_table into memory
 print("loading and_table into memory")
-filename = '../../res/safebooru/and_table.npy'
+filename = booru_path('and_table.npy')
 and_table = np.load(filename)
 
 print("counting total number of images")
-total_num_images = get_num_lines("../../res/safebooru/data/safebooru.csv")-1
+total_num_images = get_num_lines(booru_path("data/safebooru.csv"))-1
 
 
 # initialize the table to store the feature-feature correlation scores
@@ -114,7 +114,7 @@ with tqdm(total=number_of_updates) as pbar:
 
 
 # save the correlation table to a file
-filename = '../../res/safebooru/correlation_table.npy'
+filename = booru_path('correlation_table.npy')
 print("saving correlation table to {}".format(filename))
 np.save(filename, correlation_table)
 

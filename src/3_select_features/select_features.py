@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+import os,sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from utils import *
+
 import re
 from collections import defaultdict
 import pickle
@@ -46,14 +50,14 @@ def load_tag_index_map(filename):
 
 def main():
 	# select features
-	filename = "../../res/tags.csv"
+	filename = booru_path("tags.csv")
 	selected_tags = get_frequent_tags(filename)
 
 	# create tag->index map
 	tag_index_map = make_tag_index_map(selected_tags)
 
 	# save tag->index map to file
-	save_tag_index_map("../../res/tag_index_map.p", tag_index_map)
+	save_tag_index_map(booru_path("tag_index_map.p"), tag_index_map)
 
 	# notify how many tags were selected to use as features
 	print(len(selected_tags), "tags selected")
