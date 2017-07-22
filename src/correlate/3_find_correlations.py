@@ -114,7 +114,7 @@ with tqdm(total=number_of_updates) as pbar:
 
 
 # save the correlation table to a file
-filename = '../../res/correlation_table.npy'
+filename = '../../res/safebooru/correlation_table.npy'
 print("saving correlation table to {}".format(filename))
 np.save(filename, correlation_table)
 

@@ -55,7 +55,7 @@ for index, row in tag_counts.iterrows():
 
 
 print("loading correlation_table into memory")
-filename = '../../res/correlation_table.npy'
+filename = '../../res/safebooru/correlation_table.npy'
 correlation_table = np.load(filename)
 
 # highly_correlated_tags = []
