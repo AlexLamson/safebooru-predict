@@ -51,8 +51,8 @@ def write_tag_counts(tag_counts, filename):
 
 
 def main():
-	# filename = booru_path("data/head_safebooru.csv")
-	filename = booru_path("data/safebooru.csv")
+	# filename = booru_path("data/head_all_images.csv")
+	filename = booru_path("data/all_images.csv")
 
 	tag_counts = get_tag_counts(filename)
 	write_tag_counts(tag_counts, filename=booru_path("tags.csv"))

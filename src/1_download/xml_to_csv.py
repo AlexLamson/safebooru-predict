@@ -22,10 +22,10 @@ import datetime
 
 # 	return num_lines
 
-# source = booru_path("data/head_safebooru.xml")
-# dest = booru_path("data/head_safebooru.csv")
-source = booru_path("data/safebooru.xml")
-dest = booru_path("data/safebooru.csv")
+# source = booru_path("data/head_all_images.xml")
+# dest = booru_path("data/head_all_images.csv")
+source = booru_path("data/all_images.xml")
+dest = booru_path("data/all_images.csv")
 
 num_lines = get_num_lines(source)
 with open(dest, "w") as csv:

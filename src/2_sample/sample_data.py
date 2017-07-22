@@ -58,10 +58,10 @@ def sample_all_non_zero_scores(source, dest):
 
 
 def main():
-	# source = booru_path("data/head_safebooru.xml")
-	source = booru_path("data/safebooru.xml")
-	# sample_every_nth_line(source, dest=booru_path("data/sample_safebooru.xml"), n=100)
-	sample_all_non_zero_scores(source, dest=booru_path("data/sample_safebooru.xml"))
+	# source = booru_path("data/head_all_images.xml")
+	source = booru_path("data/all_images.xml")
+	# sample_every_nth_line(source, dest=booru_path("data/sample_all_images.xml"), n=100)
+	sample_all_non_zero_scores(source, dest=booru_path("data/sample_all_images.xml"))
 
 if __name__ == "__main__":
 	main()

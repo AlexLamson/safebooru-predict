@@ -23,8 +23,8 @@ Choosing what model(s) to train should be controlled by the program flow, rather
 '''
 
 
-filename = booru_path("data/head_safebooru.xml")
-# filename = booru_path("data/sample_safebooru.xml")
+filename = booru_path("data/head_all_images.xml")
+# filename = booru_path("data/sample_all_images.xml")
 tag_index_map = load_tag_index_map(booru_path("tag_index_map.p"))
 feature_names = [x[0] for x in sorted(tag_index_map.items(), key=operator.itemgetter(1))]
 xs, ys = file_to_xs_ys(filename, tag_index_map)

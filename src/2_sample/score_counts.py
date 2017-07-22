@@ -76,8 +76,8 @@ def graph_score_counts(score_counts):
 
 
 def main():
-	# filename = booru_path("data/head_safebooru.xml")
-	filename = booru_path("data/safebooru.xml")
+	# filename = booru_path("data/head_all_images.xml")
+	filename = booru_path("data/all_images.xml")
 	score_counts = get_score_counts(filename)
 	write_score_counts(score_counts, filename=booru_path("scores.csv"))
 	graph_score_counts(score_counts)

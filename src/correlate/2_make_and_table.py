@@ -54,8 +54,8 @@ and_table = np.zeros(shape=(num_tags_to_keep, num_tags_to_keep), dtype=np.uint32
 # and_table = lil_matrix((num_tags_to_keep, num_tags_to_keep), dtype=np.uint32) #maybe improve space efficiency in the future?
 
 
-# filename = booru_path("data/head_safebooru.csv")
-filename = booru_path("data/safebooru.csv")
+# filename = booru_path("data/head_all_images.csv")
+filename = booru_path("data/all_images.csv")
 
 print("reading chunks from {}".format(filename))
 num_lines = get_num_lines(filename)

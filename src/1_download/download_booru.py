@@ -11,9 +11,11 @@ import re
 import urllib
 from tqdm import tqdm
 
+default_site = "safebooru.org"
+
 
 # download the results of a single API call
-def make_query(query, site="safebooru.org", images_per_page=10, page_id=0):
+def make_query(query, site=default_site, images_per_page=10, page_id=0):
 	tags = query.split(" ")
 	html_doc = urlopen("http://{}/index.php?page=dapi&s=post&q=index&pid={}&tags=sort%3aid%3aasc+{}&limit={}".format(site, page_id, "+".join(tags), images_per_page))
 	html_doc = html_doc.read()
@@ -21,7 +23,7 @@ def make_query(query, site="safebooru.org", images_per_page=10, page_id=0):
 
 
 # get the number of images that match the query
-def get_number_of_matches(query, site="safebooru.org"):
+def get_number_of_matches(query, site=default_site):
 	html_doc = make_query(query, site=site, images_per_page=0)
 	soup = BeautifulSoup(html_doc, "lxml")
 	posts = soup.find("posts")
@@ -33,7 +35,7 @@ def get_number_of_matches(query, site="safebooru.org"):
 
 
 # download all the image metadata for a given query
-def download_info(query, filemode="w", filename="query_results.xml", site="safebooru.org", limit=-1, images_per_page=40):
+def download_info(query, filemode="w", filename="query_results.xml", site=default_site, limit=-1, images_per_page=40):
 	with open(filename, filemode) as results_file:
 		if limit == -1:
 			limit = get_number_of_matches(query, site)
@@ -64,7 +66,7 @@ def download_info(query, filemode="w", filename="query_results.xml", site="safeb
 				time.sleep(0.5)
 
 # download all the image metadata from a booru
-def download_booru(filename, site="safebooru.org"):
+def download_booru(filename, site=default_site):
 
 	#http://stackoverflow.com/a/18603065/2230446
 	def get_last_line_of_file(filename):
@@ -88,11 +90,11 @@ def download_booru(filename, site="safebooru.org"):
 		filemode = "a"
 		query = "id:>{}".format(last_id)
 
-	download_info(query=query, filemode=filemode, filename=filename, site="safebooru.org", images_per_page=900)
+	download_info(query=query, filemode=filemode, filename=filename, site=default_site, images_per_page=900)
 
 
 def main():
-	download_booru(booru_path("data/safebooru.xml"))
+	download_booru(booru_path("data/all_images.xml"))
 
 if __name__ == "__main__":
 	main()

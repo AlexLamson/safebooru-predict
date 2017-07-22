@@ -78,8 +78,8 @@ def main():
 	tag_index_map = load_tag_index_map(booru_path("tag_index_map.p"))
 	# print(tag_index_map)
 
-	filename = booru_path("data/head_safebooru.xml")
-	# filename = booru_path("data/sample_safebooru.xml")
+	filename = booru_path("data/head_all_images.xml")
+	# filename = booru_path("data/sample_all_images.xml")
 	xs, ys = file_to_xs_ys(filename, tag_index_map)
 
 	print(xs[0], ys[0])

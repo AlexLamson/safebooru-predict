@@ -60,7 +60,7 @@ filename = booru_path('and_table.npy')
 and_table = np.load(filename)
 
 print("counting total number of images")
-total_num_images = get_num_lines(booru_path("data/safebooru.csv"))-1
+total_num_images = get_num_lines(booru_path("data/all_images.csv"))-1
 
 
 # initialize the table to store the feature-feature correlation scores
