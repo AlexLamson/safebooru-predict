@@ -5,7 +5,7 @@
 def booru_path(s):
 	if s.startswith('/'):
 		print("booru_path error '{}' shouldn't start with a '/'".format(s))
-		return "../../res/safebooru{}".format(s)
+		return booru_path(s[1:])
 	return "../../res/safebooru/{}".format(s)
 
 
