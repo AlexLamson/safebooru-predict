@@ -58,30 +58,6 @@ print("loading correlation_table into memory")
 filename = '../../res/safebooru/correlation_table.npy'
 correlation_table = np.load(filename)
 
-# highly_correlated_tags = []
-
-# n = len(tag_to_index_map)
-# with tqdm(total=n*n/2-n) as pbar:
-# 	for i1 in range(len(tag_to_index_map)):
-# 		for i2 in range(i1+1, len(tag_to_index_map)):
-# 			x = correlation_table[i1, i2]
-# 			# if x < -0.07:
-# 			# if x > 0.32:
-# 			if x > 0.9:
-# 				tag1 = index_to_tag_map[i1]
-# 				tag2 = index_to_tag_map[i2]
-# 				s = "{: .8f} - {} & {}".format(x, tag1, tag2)
-# 				highly_correlated_tags.append(s)
-
-# 			pbar.update(1)
-
-# print("\n".join(sorted(highly_correlated_tags, reverse=True)))
-
-# exit()
-
-
-
-
 
 def get_correlations(query_tag):
 	correlation_results = []

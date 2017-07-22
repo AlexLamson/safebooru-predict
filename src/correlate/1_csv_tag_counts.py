@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+import os,sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from utils import get_num_lines
+
 import time
 from collections import defaultdict
 from tqdm import tqdm
