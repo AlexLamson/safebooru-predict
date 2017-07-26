@@ -25,6 +25,9 @@ cast correlation_results to numpy array to better visualize the beginning and en
 print the correlation_results
 '''
 
+show_first_n = 13 #show the first n tags
+show_last_n = 5 #show last n tags
+
 num_tags_to_keep = 10000 #don't change this value unless you re-run the other scripts with the new value
 
 
@@ -88,16 +91,47 @@ def get_correlations(query_tag):
 
 	return correlation_results
 
+
+correlation_strings = []
 print("="*20)
 should_keep_running = True
 while should_keep_running:
-	query_tag = input("enter a query tag (ex. coffee) ('q' to quit): ")
-	query_tag = query_tag.replace(" ","_")
+	# receive the user input
+	query_tag = input("enter a query tag (ex. coffee) or 'quit' or 'tofile': ")
 
+	# quit the program
 	if query_tag in ["quit", "exit", "q"]:
 		should_keep_running = False
 		continue
 
+	# write previous results to a file
+	if query_tag == "tofile":
+		# write the results to a file
+		print("writing query results to file")
+		with open(booru_path("query_results.csv"), 'w') as fp:
+			fp.write("\n".join(correlation_strings))
+		continue
+
+	# use a space at the start or end like a wildcard to find tags
+	if " " in query_tag:
+		a = query_tag.startswith(" ")
+		b = query_tag.endswith(" ")
+		def is_match(tag):
+			return (a and tag.endswith(query_tag.strip())) or (b and tag.startswith(query_tag.strip()))
+
+		possible_tags = [tag for tag in tag_to_index_map if is_match(tag)]
+
+		if len(possible_tags) == 0:
+			print("Couldn't find any matches for {}".format(query_tag))
+		elif len(possible_tags) == 1:
+			query_tag = possible_tags[0]
+		else:
+			print("Matches:")
+			print("="*20)
+			print("\n".join(possible_tags))
+			continue
+
+	# query_tag = query_tag.replace(" ","_")
 	correlation_results = get_correlations(query_tag)
 	
 	if len(correlation_results) == 0:
@@ -105,15 +139,10 @@ while should_keep_running:
 
 	# print the most and least correlated items
 	# correlation_strings = ["{},{:.4f}".format(a,b) for a,b in correlation_results]
-	correlation_strings = ["{: .4f},{}".format(b,a) for a,b in correlation_results]
+	correlation_strings = ["{: .4f} {}".format(b,a) for a,b in correlation_results]
 	print("="*20)
 	# print("QUERY: {}".format(query_tag))
-	print("\n".join(correlation_strings[:10]))
-	print("."*3)
-	print("\n".join(correlation_strings[-5:]))
+	print("\n".join(correlation_strings[:show_first_n]))
+	print("...")
+	print("\n".join(correlation_strings[-show_last_n:]))
 	print("="*20)
-
-# # write the results to a file
-# print("writing query results to file")
-# with open(booru_path("query_results.csv"), 'w') as fp:
-#     fp.write('\n'.join('"{}",{}'.format(tag,score) for tag,score in correlation_results))
