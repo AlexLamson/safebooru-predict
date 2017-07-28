@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os,sys
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from utils import *
+from utils import get_num_lines, booru_path
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
