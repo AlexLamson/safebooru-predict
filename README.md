@@ -4,11 +4,25 @@ Predict user ratings for anime-style images
 ## Requirements
 
 ### Python
-- tqdm
-- sklearn
+See requirements.txt
 
 ### Other
 - GraphViz
+
+
+## Getting Started
+### Downloading & Preprocessing
+- `python download/download_booru.py`
+- `python download/xml_to_csv.py`
+- `python preprocess/preprocess_all_data.py`
+
+### Initializing the database
+- `pg_ctl initdb -D "safebooru-predict2/res/safebooru/sql_data"`
+- `pg_ctl start -D "safebooru-predict/res/safebooru/sql_data" -l logfile`
+
+### Starting the webserver
+- `set FLASK_APP=src/recommend/webserver.py`
+
 
 ## To Do
 - parameterize number of images instead of hardcoding it
@@ -26,6 +40,7 @@ Predict user ratings for anime-style images
   - naive bayes maybe
 - choose optimal regressor based on testing set
 - report accuracy found in validation set
+
 
 ## General notes
 - It took 5 hours and 12 minutes to download all the metadata

@@ -1,0 +1,10 @@
+tqdm
+pandas
+numpy
+scikit-learn
+matplotlib
+bitarray
+psycopg2
+shelve
+klepto
+graphviz
