@@ -2,7 +2,8 @@
 excluded/
 src/testing/
 !res/safebooru
-res/safebooru/data
+res/safebooru/data/*
+res/safebooru/pickle_files/*
 
 
 # Byte-compiled / optimized / DLL files
