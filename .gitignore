@@ -1,7 +1,10 @@
 # Project-specific
 excluded/
 src/testing/
-res/*.xml
+!res/safebooru
+res/safebooru/data/*
+res/safebooru/pickle_files/*
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

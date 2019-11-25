@@ -1,31 +1,30 @@
 # safebooru-predict
 Predict user ratings for anime-style images
 
-## Requirements
 
-### Python
-- tqdm
-- sklearn
+## Getting Started
+1. Install the required python packages with `pip install -r requirements.txt`
+2. [Download the data](https://www.kaggle.com/alamson/safebooru) and place `all_data.csv` into `res/safebooru/data`
 
-### Other
-- GraphViz
 
-## Pipeline
-- download all metadata
-- sample from that xml file so that amount of data is reasonable
-- select features
-- machine learn it up
-  - regression tree
-  - random forest of regression trees
-  - PCA and K-means
-  - naive bayes maybe
-- choose optimal regressor based on testing set
-- report accuracy found in validation set
+### Generate statistics
+Enter the `src/preprocess` directory and run `python preprocess_all_data.py`
+Cost: 2.5 GB RAM, 16 minutes
 
-## General notes
-- It took 5 hours and 12 minutes to download all the metadata
-- It took 59 minutes to count the number of occurrences of each score
-- Only about 28.9% of images have a score greater than 0.
-- It took 1 hour and 5 minutes to count the number of occurrences of each tag
-- Setting criterion="mae" makes the classifier train too slowly to be useable
-- Look into this: http://scikit-learn.org/stable/auto_examples/ensemble/plot_adaboost_multiclass.html
+
+### Find correlations between tags
+Enter the `src/correlate` directory and run `python compute_cooccurrence_matrix.py`
+Cost: 5.5 GB RAM, 35 minutes
+
+Run `python query.py` and explore tags.
+
+
+<!--
+### To initialize the database
+- `pg_ctl initdb -D "safebooru-predict2/res/safebooru/sql_data"`
+- `pg_ctl start -D "safebooru-predict/res/safebooru/sql_data" -l logfile`
+
+
+### To start the webserver
+- `set FLASK_APP=src/recommend/webserver.py`
+ -->
