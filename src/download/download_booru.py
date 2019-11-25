@@ -87,7 +87,7 @@ def download_info(query, site, filename, filemode="w", limit=-1, images_per_page
             page_id = 0
             images_downloaded = images_per_page*page_id
 
-            with tqdm(total=limit, ascii=True) as pbar:
+            with tqdm(total=limit) as pbar:
 
                 while images_downloaded < limit:
 
@@ -142,13 +142,10 @@ def download_booru(filename, site):
     download_info(query, site, filename, filemode, images_per_page=max_images_per_page)
 
 
-def main():
+if __name__ == "__main__":
     print("URL: {}".format(booru_url()))
     print("Batch size: {}".format(max_images_per_page))
     print("Seconds between batches: {}".format(seconds_between_batches))
     download_booru(booru_path("data/all_data.xml"), booru_url())
     print("Download complete")
-
-
-if __name__ == "__main__":
     main()

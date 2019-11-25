@@ -131,9 +131,6 @@ def convert_file(src, dest):
                     csv.write(csv_line)
 
 
-def main():
-    convert_file(src=booru_path("data/all_data.xml"), dest=booru_path("data/all_data.csv"))
-
-
 if __name__ == "__main__":
+    convert_file(src=booru_path("data/all_data.xml"), dest=booru_path("data/all_data.csv"))
     main()
