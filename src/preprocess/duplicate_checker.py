@@ -28,10 +28,10 @@ class DuplicateChecker:
 
         # if the tags are very similar to the previous image's tags, consider that a duplicate image
         if len(tags) >= 8 and similarity_with_last_image >= 0.8:
-            self.all_duplicates[index] = True
+            self.all_duplicates[row["id"]] = True
             return True
         else:
-            self.all_duplicates[index] = False
+            self.all_duplicates[row["id"]] = False
             return False
 
     def write_results(self):
