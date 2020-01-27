@@ -29,7 +29,7 @@ def get_correlations(query_tag):
     # check that the tag is one that has correlations calculated
     if query_tag not in tag_to_index:
         print("ERROR '{}' not in the {} available tags".format(query_tag, len(tag_to_index)))
-        return [], [], [], []
+        return [], [], []
 
     query_tagid = tag_to_index[query_tag]
 
